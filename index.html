@@ -1,0 +1,52 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8" />
+    <title>Gravity_Cop</title>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.54.0/dist/phaser.js"></script>
+    <script src="Scene_menu.js"></script>
+    <script src="Scene_jeu.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+
+var config = {
+    type: Phaser.AUTO,
+    width: 896,
+    height:448 ,
+    physics: {
+        default: 'arcade',
+        arcade: {
+            tileBias: 64,
+            gravity: { y: 0},
+            debug: false
+        }
+    },
+    scene: [
+        Scene_menu,
+        Scene_jeu
+    ]
+        
+    
+};
+    
+    
+
+
+    
+var game = new Phaser.Game(config);
+
+
+
+
+
+</script>
+
+</body>
+</html>
