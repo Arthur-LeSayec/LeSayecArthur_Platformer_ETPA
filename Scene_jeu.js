@@ -31,6 +31,7 @@ var stopped = false;
 var narrato;
 var gameStarted = false;
 var tutoChrono;
+var credit;
 
 
 class Scene_jeu extends Phaser.Scene{
@@ -375,6 +376,10 @@ if (Phaser.Input.Keyboard.JustDown(bouton_stop_resume)) {
    stopped = false; // on met a jour le booleen
 }  
     
+}
+    
+if (player.x >31884){
+        this.scene.start("Scene_credit");
 }
     
     
