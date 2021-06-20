@@ -32,6 +32,8 @@ var narrato;
 var gameStarted = false;
 var tutoChrono;
 var credit;
+var imageVie;
+var musiqueFond;
 
 
 class Scene_jeu extends Phaser.Scene{
@@ -55,6 +57,8 @@ preload ()
     this.load.image('ennemi', 'assets/images/ennemi.png');
     this.load.image('intro', 'assets/images/intro.png')
     this.load.image('chrono', 'assets/images/chrono.png')
+    this.load.spritesheet('vie', 'assets/images/spritesheet_vie.png', { frameWidth: 12, frameHeight: 32 });
+    this.load.audio('musique','assets/images/musique_fond.mp3');
     
 }
 
@@ -73,6 +77,22 @@ create ()
     const fleches = map.createLayer ('fleches', tileset, 0,0);
     const spike = map.createLayer ('spike', tileset, 0,0);
     const collectibleObject = map.getObjectLayer('collectible').objects;
+    
+    
+    //musique
+    this.musique = this.sound.add("musique");
+
+        var musicConfig = {
+            mute : false,
+            volume : 0.2,
+            rate : 1.2,
+            deturne : 0,
+            seek : 0,
+            loop : true,
+            delay : 0,
+
+        }
+    this.musique.play(musicConfig)
     
     
     
@@ -179,6 +199,43 @@ create ()
             ScoreBillet.setText("X" +billet);
     }
     
+    imageVie= this.physics.add.sprite(-110,-30, 'vie').setScrollFactor(0).setScale(3);
+    imageVie.body.allowGravity = false
+    this.anims.create({
+        key: 'vie1',
+        frames: [{key:'vie',frame:4}],
+        frameRate: 20,
+        });
+    
+        this.anims.create({
+        key: 'vie2',
+        frames: [{key:'vie',frame:3}],
+        frameRate: 20,
+        });
+    
+        this.anims.create({
+        key: 'vie3',
+        frames: [{key:'vie',frame:2}],
+        frameRate: 20,
+        });
+    
+        this.anims.create({
+        key: 'vie4',
+        frames: [{key:'vie',frame:1}],
+        frameRate: 20,
+        });
+    
+        this.anims.create({
+        key: 'vie5',
+        frames: [{key:'vie',frame:0}],
+        frameRate: 20,
+        });
+    
+
+    
+    
+    
+    
     
     
     
@@ -200,7 +257,7 @@ create ()
     
     
     //affiche vie
-    scorevie = this.add.text(-150, -75, playerPdv, { fontStyle: "bold",fontSize: '32px', fill: '#000797' }).setScrollFactor(0);
+    scorevie = this.add.text(-1000, -1000, playerPdv, { fontStyle: "bold",fontSize: '32px', fill: '#000797' }).setScrollFactor(0);
     
     
     //timer
@@ -247,6 +304,24 @@ create ()
 
 update ()
 {
+  
+    if (playerPdv ==5){
+        imageVie.anims.play('vie1',true);
+    }
+    if (playerPdv ==4){
+        imageVie.anims.play('vie2',true);
+    }
+    if (playerPdv ==3){
+        imageVie.anims.play('vie3',true);
+    }
+    if (playerPdv ==2){
+        imageVie.anims.play('vie4',true);
+    }
+    if (playerPdv ==1){
+        imageVie.anims.play('vie5',true);
+    }
+
+    
     
     if(etat_ennemi_01 == true){
         if (player.x - ennemi_01.x <481 && player.x - ennemi_01.x > 32 && ennemi_01.y - player.y < 321 && ennemi_01.y - player.y > -64){
@@ -374,14 +449,17 @@ if (Phaser.Input.Keyboard.JustDown(bouton_stop_resume)) {
    monTimer.reset({ delay:1000, callback: compteUneSeconde, callbackScope: this,
                   loop: true});
    stopped = false; // on met a jour le booleen
-}  
-    
+}     
 }
-    
+
+
+
+
 if (player.x >31884){
         this.scene.start("Scene_credit");
 }
-    
+
+
     
 }
 }
