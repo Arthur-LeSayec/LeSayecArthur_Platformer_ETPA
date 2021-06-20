@@ -20,7 +20,7 @@ preload(){
     
     
 create(){
-    this.add.image(10,10, 'menu').setOrigin(0);
+    this.add.image(0,0, 'menu').setOrigin(0);
     
     jouer1 = this.physics.add.sprite(448,386,'jouer1').setInteractive();
         jouer1.body.setAllowGravity(false);
@@ -62,7 +62,7 @@ create(){
     
         });
 
-        jouer2.on('pointerup', function () {
+        jouer2.on('pointerdown', function () {
             this.scene.start("Scene_jeu");
         }, this);
     

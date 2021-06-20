@@ -28,6 +28,8 @@ var chrono=0;
 var bouton_stop_resume;
 var bouton_reset;
 var stopped = false;
+var narrato;
+var gameStarted = false;
 
 
 class Scene_jeu extends Phaser.Scene{
@@ -49,6 +51,7 @@ preload ()
     this.load.image('ville', 'assets/images/ville.png');
     this.load.image('billet', 'assets/images/billet.png');
     this.load.image('ennemi', 'assets/images/ennemi.png');
+    this.load.image('intro', 'assets/images/intro.png')
     
 }
 
@@ -214,9 +217,17 @@ create ()
     chronoText.setScrollFactor(0);
     
     bouton_stop_resume = this.input.keyboard.addKey("S");
-    bouton_reset = this.input.keyboard.addKey("R"); 
+    bouton_reset = this.input.keyboard.addKey("R");
     
+
+    //narrato
     
+    narrato = this.add.image(-20, 640, 'intro').setInteractive().setOrigin(0).setScale(1.5);
+        
+    narrato.on('pointerdown', function(){
+        narrato.destroy();
+        gameStarted = true;
+    }); 
     
    
 }
@@ -256,6 +267,15 @@ update ()
         player.setVelocityX(0); 
     }
     
+    
+    if (gameStarted == false) {
+        this.physics.pause();
+    } 
+    else if (gameStarted == true){
+        this.physics.resume();
+    }  
+    
+
 
 
 

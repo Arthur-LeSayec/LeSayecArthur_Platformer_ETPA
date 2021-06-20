@@ -8,7 +8,14 @@
     <script src="Scene_jeu.js"></script>
     <style type="text/css">
         body {
-            margin: 0;
+            margin-top:132px;
+            margin-right:293px;
+            margin-bottom:500px;
+            margin-left:320px;
+            border: 5px ridge #370B53;
+            border-radius: 10px;
+            background: linear-gradient(#202353, #01043d);
+
         }
     </style>
 </head>
@@ -25,12 +32,12 @@ var config = {
         arcade: {
             tileBias: 64,
             gravity: { y: 0},
-            debug: false
+            debug: true
         }
     },
     scene: [
         Scene_menu,
-        Scene_jeu
+        Scene_jeu  
     ]
         
     
