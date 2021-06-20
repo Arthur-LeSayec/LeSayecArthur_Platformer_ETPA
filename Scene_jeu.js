@@ -2,8 +2,8 @@ var player;
 var cursors;
 var gravite;
 var etatgravite = 0;
-var position_x = 191;
-var position_y = 957;
+var position_x = 155;
+var position_y = 992;
 var invincible=false;
 var compteur = 120; 
 var playerPdv=5;
@@ -30,6 +30,7 @@ var bouton_reset;
 var stopped = false;
 var narrato;
 var gameStarted = false;
+var tutoChrono;
 
 
 class Scene_jeu extends Phaser.Scene{
@@ -52,6 +53,7 @@ preload ()
     this.load.image('billet', 'assets/images/billet.png');
     this.load.image('ennemi', 'assets/images/ennemi.png');
     this.load.image('intro', 'assets/images/intro.png')
+    this.load.image('chrono', 'assets/images/chrono.png')
     
 }
 
@@ -220,6 +222,13 @@ create ()
     bouton_reset = this.input.keyboard.addKey("R");
     
 
+        //tuto chrono
+    tutoChrono = this.add.image(250, 700, 'chrono').setInteractive().setOrigin(0);
+        
+    tutoChrono.on('pointerdown', function(){
+        tutoChrono.destroy();
+        gameStarted = true;
+    }); 
     //narrato
     
     narrato = this.add.image(-20, 640, 'intro').setInteractive().setOrigin(0).setScale(1.5);
@@ -228,6 +237,8 @@ create ()
         narrato.destroy();
         gameStarted = true;
     }); 
+    
+
     
    
 }
