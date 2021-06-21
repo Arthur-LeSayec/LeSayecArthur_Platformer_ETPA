@@ -1,5 +1,7 @@
 Projet de fin d'année GD1 ETPA Rennes.
 
+Page itch.io : https://arthurls.itch.io/gravity-cop
+
 
 
 ----------GRAVITY COP----------
